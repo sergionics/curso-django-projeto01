@@ -19,7 +19,7 @@ class Recipe(models.Model):
     servings = models.IntegerField()
     servings_unit = models.CharField(max_length=65)
     preparation_steps = models.TextField()
-    preparation_steps_is_htmk = models.BooleanField(default=False)
+    preparation_steps_is_htmk = models.BooleanField(default=False)     #todo: arrumar nome do campo errado
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)

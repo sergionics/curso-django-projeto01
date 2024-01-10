@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_list_or_404
 from utils.recipes.factory import make_recipe
 from recipes.models import Recipe
-from django.http import Http404
 
 app_name = 'recipes'
 
@@ -22,14 +21,6 @@ def home(request):
 
 def category(request, category_id):
 
-    # recipes = Recipe.objects.filter(
-    #    category__id=category_id,
-    #    is_published=True
-    # ).order_by('-id')
-
-    # if not recipes:
-    #    raise Http404('Não encontrado...')
-
     recipes = get_list_or_404( Recipe.objects.filter(
             category__id=category_id,
             is_published=True
@@ -45,7 +36,10 @@ def category(request, category_id):
 
 def recipe(request, id):
 
-    recipe = Recipe.objects.get(pk=id)
+    recipe = Recipe.objects.filter(
+        pk=id,
+        is_published=True
+    ).order_by('-id').first()
 
     return render(request, "recipes/pages/recipe-view.html", context={
         'name': 'Sergionics',
