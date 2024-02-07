@@ -61,3 +61,5 @@ class RecipeModelTest(RecipeTestBase):
             msg=f'Recipe string representation must be '
                 f'"{needed}" but "{str(self.recipe)}" was received.'
         )
+
+    
